@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+ <head>
+  <meta charset="UTF-8">
+  <meta name="Generator" content="EditPlus®">
+  <meta name="Raju" content="">
+  <meta name="Keywords" content="">
+  <meta name="HealthApp" content="">
+  <title>DoctorDetails</title>
+<script type="text/javascript"
+    charset="utf-8"
+    src=
+    "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+  </script>
+ </head>
+ <body>
+ <script>
+$(function(){
+  var i = 0;
+  $.getJSON("/doctorlist",function(obj){
+    document.write('<center><h2 >Name of the Doctors</h2></center>');
+    document.write('<center><p>(click on the Name to see their details)<p></center>');
+    for(var i=0;i<obj.doctorlist.length;i++)
+    {  document.write('<center><p onclick="someFunction(\'' + obj.doctorlist[i].field +'|'+ obj.doctorlist[i]._id + '\')" >' + obj.doctorlist[i].name + '</p></center>');
+
+  }
+})});
+
+function someFunction() {
+      var val=arguments[0];
+      var res = val.split("|");
+      localStorage.setItem("field", res[0]);
+      localStorage.setItem("id", res[1]);
+      window.location.href="users.html";
+}
+
+ </script>
+  </body>
+</html>

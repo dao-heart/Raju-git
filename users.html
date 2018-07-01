@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Test</title>
+    <script type="text/javascript"
+        charset="utf-8"
+        src=
+        "http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">
+      </script>
+      <script type="text/javascript"
+          charset="utf-8" src="ajaxcall.js">
+        </script>
+  </head>
+  <body>
+      <script>
+          var id = localStorage.getItem("id");
+          var field = localStorage.getItem("field");
+          $(function() {
+            var i = 0;
+            $.getJSON(`/doc-prof/${id}`, function(obj){
+              document.write('<center><h2 >Doctor information</h2></center>');
+              document.write('<center><p >Name of the Doctor: ' + obj.doctorlist['name'] + '</p></center>');
+              document.write('<center><p>Gender: ' + obj.doctorlist['gender'] + '</p></center>');
+              document.write('<center><p>Speciality: ' + obj.doctorlist['field'] + '</p></center>');
+            });
+
+            $.getJSON(`/other-prof/${field}`, function(obj){
+              document.write('<center><h2 >Doctors available with the same Speciality</h2></center>');
+              for(var i=0;i<obj.doctorlist.length;i++)
+              {  document.write('<center><p>' + obj.doctorlist[i].name + '</p></center>');
+            }
+              document.write('<a href="index.html">Back to the list</a>');
+            });
+          });
+</script>
+  </body>
+</html>
